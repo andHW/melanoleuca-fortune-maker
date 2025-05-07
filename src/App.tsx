@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, createTheme, responsiveFontSizes, TextField, ThemeProvider, Typography } from '@mui/material';
-import html2canvas from "html2canvas";
+// import html2canvas from "html2canvas";
 
 let theme = createTheme({
   palette: {
@@ -29,7 +29,7 @@ function App() {
   const [brandName, setBrandName] = useState("Ada Express");
   const fortuneRef = useRef<HTMLDivElement>(null);
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  /*
   const downloadFortune = async () => {
     if (!fortuneRef.current) return;
     const canvas = await html2canvas(fortuneRef.current, {
@@ -41,6 +41,7 @@ function App() {
     link.href = canvas.toDataURL();
     link.click();
   };
+  */
 
   return (
     <ThemeProvider theme={theme}>
