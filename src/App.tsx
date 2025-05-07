@@ -21,6 +21,7 @@ theme = responsiveFontSizes(theme);
 
 const fortunes = [
   "You are as intelligent as you are good looking.",
+  "A former acquaintance will unexpectedly resurface.",
 ];
 
 function App() {
@@ -28,11 +29,7 @@ function App() {
   const [brandName, setBrandName] = useState("Ada Express");
   const fortuneRef = useRef<HTMLDivElement>(null);
 
-  const generateFortune = () => {
-    const random = fortunes[Math.floor(Math.random() * fortunes.length)];
-    setFortune(random);
-  };
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const downloadFortune = async () => {
     if (!fortuneRef.current) return;
     const canvas = await html2canvas(fortuneRef.current, {
