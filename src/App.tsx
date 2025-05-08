@@ -1,7 +1,6 @@
 import { useRef, useState } from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
 import { Box, createTheme, responsiveFontSizes, TextField, ThemeProvider, Typography } from '@mui/material';
-// import html2canvas from "html2canvas";
 
 let theme = createTheme({
   palette: {
@@ -28,20 +27,6 @@ function App() {
   const [fortune, setFortune] = useState(fortunes[0]);
   const [brandName, setBrandName] = useState("Ada Express");
   const fortuneRef = useRef<HTMLDivElement>(null);
-
-  /*
-  const downloadFortune = async () => {
-    if (!fortuneRef.current) return;
-    const canvas = await html2canvas(fortuneRef.current, {
-      backgroundColor: "#ffffff",
-      scale: 4, // For higher resolution
-    });
-    const link = document.createElement("a");
-    link.download = "fortune.png";
-    link.href = canvas.toDataURL();
-    link.click();
-  };
-  */
 
   return (
     <ThemeProvider theme={theme}>
