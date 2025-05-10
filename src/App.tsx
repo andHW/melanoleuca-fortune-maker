@@ -1,120 +1,65 @@
-import { useRef, useState } from 'react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Box, createTheme, responsiveFontSizes, TextField, ThemeProvider, Typography } from '@mui/material';
+import CssBaseline from "@mui/material/CssBaseline";
+import {
+  Box,
+  createTheme,
+  responsiveFontSizes,
+  ThemeProvider,
+} from "@mui/material";
+import TitleBar from "./components/TitleBar";
+import FortunePapers from "./components/FortunePapers";
+import { FortuneProvider } from "./context/FortuneProvider";
+import { DialogsProvider } from "@toolpad/core";
 
 let theme = createTheme({
   palette: {
     primary: {
-      main: '#d1282e',
+      main: "#d8127e",
     },
   },
   components: {
     MuiTextField: {
       defaultProps: {
-        variant: 'outlined'
+        variant: "outlined",
       },
-    }
-  }
+    },
+  },
 });
 theme = responsiveFontSizes(theme);
 
-const fortunes = [
-  "You are as intelligent as you are good looking.",
-  "A former acquaintance will unexpectedly resurface.",
-];
-
-function App() {
-  const [fortune, setFortune] = useState(fortunes[0]);
-  const [brandName, setBrandName] = useState("Ada Express");
-  const fortuneRef = useRef<HTMLDivElement>(null);
-
+const App = () => {
   return (
     <ThemeProvider theme={theme}>
-      <CssBaseline />
-      <Box
-        sx={{
-          width: '100vw',
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'center',
-          alignItems: 'center',
-          textAlign: 'center',
-        }}
-      >
-        <Typography
-          variant='h1'
-          sx={{
-            position: 'absolute',
-            top: (theme) => theme.spacing(1),
-          }}
-        >
-          🐼
-        </Typography>
-        <Typography
-          variant='h1'
-          sx={{
-            position: 'absolute',
-            bottom: (theme) => theme.spacing(2),
-            display: 'flex',
-            gap: 1,
-          }}
-        >
-          <TextField
-            label="Fortune"
-            value={fortune}
-            onChange={(e) => setFortune(e.target.value)}
-            slotProps={{htmlInput: { maxLength: 55 }}}
-          />
-          <TextField
-            label="Brand Name"
-            value={brandName}
-            onChange={(e) => setBrandName(e.target.value)}
-            slotProps={{htmlInput: { maxLength: 30 }}}
-          />
-        </Typography>
-
-
-        <Box
-          ref={fortuneRef}
-          sx={{
-            width: "78mm",
-            height: "23mm",
-            bgcolor: "#fff",
-            border: "1px solid #ccc",
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "space-between",
-            textAlign: "center",
-            px: "6mm",
-            py: "4mm",
-            boxSizing: "border-box",
-            fontFamily: `"Helvetica Neue", Helvetica, Arial, sans-serif`,
-            textTransform: "uppercase",
-            color: theme => theme.palette.primary.main,
-          }}
-        >
-          <Typography
+      <DialogsProvider>
+        <FortuneProvider>
+          <CssBaseline />
+          <Box
             sx={{
-              fontSize: "10pt",
-              fontWeight: "lighter",
-              lineHeight: 1.3,
+              width: "100vw",
+              height: "100vh",
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              textAlign: "center",
             }}
           >
-            {fortune}
-          </Typography>
-          <Typography
-            sx={{
-              fontSize: "7pt",
-              fontFamily: `Arial, sans-serif`,
-              fontWeight: "bold",
-            }}
-          >
-            {brandName}
-          </Typography>
-        </Box>
-      </Box>
+            <TitleBar />
+            <FortunePapers />
+            <Box
+              sx={{
+                position: "absolute",
+                bottom: (theme) => theme.spacing(2),
+                display: "flex",
+                gap: 1,
+              }}
+            >
+              {/* TODO: add fortune button */}
+            </Box>
+          </Box>
+        </FortuneProvider>
+      </DialogsProvider>
     </ThemeProvider>
-  )
-}
+  );
+};
 
-export default App
+export default App;
