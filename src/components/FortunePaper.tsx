@@ -8,7 +8,7 @@ interface FortunePaperProps {
 }
 
 const FortunePaper = ({ fortune, onClick }: FortunePaperProps) => {
-  const { globalBrandName } = useFortune();
+  const { globalFortuneText, globalBrandName } = useFortune();
 
   return (
     <Box
@@ -39,7 +39,7 @@ const FortunePaper = ({ fortune, onClick }: FortunePaperProps) => {
       >
         {fortune.applyLocalFortuneText
           ? fortune.localFortuneText
-          : "Default Fortune"}
+          : globalFortuneText}
       </Typography>
       <Typography
         sx={{

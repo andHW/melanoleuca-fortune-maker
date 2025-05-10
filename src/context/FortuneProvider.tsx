@@ -8,6 +8,10 @@ export interface FortuneContextType {
   setGlobalBrandName: (brandName: string) => void;
   globalFortuneText: string;
   setGlobalFortuneText: (fortuneText: string) => void;
+
+  maxNumberOfFortunes: number;
+  minNumberOfFortunes: number;
+
   fortunes: Fortune[];
   setFortunes: (fortunes: Fortune[]) => void;
   handleAddFortune: () => void;
@@ -60,6 +64,8 @@ export const FortuneProvider = ({ children }: { children: ReactNode }) => {
         setGlobalBrandName,
         globalFortuneText,
         setGlobalFortuneText,
+        maxNumberOfFortunes: 16,
+        minNumberOfFortunes: 1,
         fortunes: localFortunes,
         setFortunes: setLocalFortunes,
         handleAddFortune,
